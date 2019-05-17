@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shy.zlread.MainActivity">
+
+    <com.shy.zlread.weight.StepProgress
+        android:visibility="gone"
+        android:id="@+id/step_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:innerColor="@color/colorPrimary"
+        app:outColor="@color/colorAccent"
+        app:circleWidth="5dp"
+        app:circleTextSize="25sp"
+        app:circleTextColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.shy.zlread.weight.ShapeView
+        android:id="@+id/shapview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+</android.support.constraint.ConstraintLayout>

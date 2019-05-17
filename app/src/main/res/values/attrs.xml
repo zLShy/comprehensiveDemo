@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StepProgress">
+        <attr name="circleWidth" format="dimension"/>
+        <attr name="outColor" format="color"/>
+        <attr name="innerColor" format="color"/>
+        <attr name="circleTextColor" format="color"/>
+        <attr name="circleTextSize" format="dimension"/>
+    </declare-styleable>
+    
+    <declare-styleable name="KGSlideMenu">
+        <attr name="rightMagrin" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleView">
+        <attr name="circleColor" format="color"/>
+    </declare-styleable>
+</resources>

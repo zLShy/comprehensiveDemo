@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ZLRead.iml" filepath="$PROJECT_DIR$/ZLRead.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baseadapterlibrary/baseadapterlibrary.iml" filepath="$PROJECT_DIR$/baseadapterlibrary/baseadapterlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baselibrary/baselibrary.iml" filepath="$PROJECT_DIR$/baselibrary/baselibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openCVLibs/openCVLibs.iml" filepath="$PROJECT_DIR$/openCVLibs/openCVLibs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openCvLibary/openCvLibary.iml" filepath="$PROJECT_DIR$/openCvLibary/openCvLibary.iml" />
+    </modules>
+  </component>
+</project>

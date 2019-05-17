@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.shy.zlread.weight.MyScrolliew
+        android:id="@+id/md_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/back_iv"
+                android:background="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:text="hello"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <TextView
+                android:gravity="center_vertical"
+                android:text="hello"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <TextView
+                android:gravity="center_vertical"
+                android:text="hello"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <TextView
+                android:gravity="center_vertical"
+                android:text="hello"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <TextView
+                android:gravity="center_vertical"
+                android:text="hello"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+        </LinearLayout>
+    </com.shy.zlread.weight.MyScrolliew>
+    <LinearLayout
+        android:id="@+id/title_view"
+        android:gravity="center"
+        android:background="@android:color/holo_blue_light"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <TextView
+            android:textSize="17sp"
+            android:text="titleBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>
