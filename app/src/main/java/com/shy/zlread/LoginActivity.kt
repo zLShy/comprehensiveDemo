@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.shy.baseadapterlibrary.ExceptionCarshHandler
@@ -36,10 +37,23 @@ class LoginActivity : BaseActicity(), ILoginView {
         Log.e("TAG", "device ->" + android.os.Build.DEVICE)
         Log.e("TAG", "display ->" + android.os.Build.DISPLAY)
         val sum: (Int, Int) -> Int = { x, y -> x + y }
+        val sub = { a: Int, b: Int -> a - b }
         Log.e("TAG", "lambed->${sum.invoke(1, 2)}")
+        Log.e("TAG","lambed->${sub(3,2)}")
+
+
+        val add = {  -> 4}
+        Log.e("TAG","lambed->${add()}")
 //        Glide.with(this).load("https://sys.cegzm.com/adver/102.gif").asGif().into(image_iv)
+        login_btn.visible()
     }
 
+    fun View.visible() {
+        visibility = View.VISIBLE
+    }
+    fun Button.OnClick() {
+        mILoginPresenterImp!!.doLogin()
+    }
     override fun getCount(): String {
 
         return login_count_et.text.toString().trim()

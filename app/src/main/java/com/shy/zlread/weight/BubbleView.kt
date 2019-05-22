@@ -16,6 +16,7 @@ class BubbleView @JvmOverloads constructor(context: Context, attributeSet: Attri
     private var mRadius = dip2px(8F)
     private var mMaxRadius = dip2px(8F)
     private var mMinRadius = dip2px(3F)
+    private var mDragRadius = 0F
     private var mDragPoint: PointF? = null
     private var mBottomPoint: PointF? = null
 
@@ -42,7 +43,7 @@ class BubbleView @JvmOverloads constructor(context: Context, attributeSet: Attri
         var mPath = getBeizerPath()
         if (mPath != null) {
             canvas.drawPath(mPath, mPaint)
-            canvas.drawCircle(mBottomPoint!!.x, mBottomPoint!!.y, mMaxRadius, mPaint)
+            canvas.drawCircle(mBottomPoint!!.x, mBottomPoint!!.y, mDragRadius, mPaint)
         }
         canvas.drawCircle(mDragPoint!!.x, mDragPoint!!.y, mRadius, mPaint)
 
@@ -84,15 +85,14 @@ class BubbleView @JvmOverloads constructor(context: Context, attributeSet: Attri
         var distanceX = Math.pow(((pointF1.x - pointF2.x).toDouble()), 2.0)
         var distanceY = Math.pow((pointF1.y - pointF2.y).toDouble(), 2.0)
         var distance = Math.sqrt(distanceX + distanceY)
-        mMaxRadius = (mMaxRadius - distance / 14).toFloat()
+        mDragRadius = (mMaxRadius - distance / 14).toFloat()
 
     }
 
 
     fun getBeizerPath(): Path? {
         lineDistance(mDragPoint!!, mBottomPoint!!)
-        if (mMaxRadius < mMinRadius) {
-            mMaxRadius = dip2px(8F)
+        if (mDragRadius < mMinRadius) {
             return null
         }
         var dy = mBottomPoint!!.y - mDragPoint!!.y
@@ -120,5 +120,13 @@ class BubbleView @JvmOverloads constructor(context: Context, attributeSet: Attri
         mPath.quadTo(centerX, centerY, p1.x, p1.y)
         mPath.close()
         return mPath
+    }
+
+    fun attch(mView: View,disapperListener: disapperListener) {
+
+    }
+
+   open interface disapperListener {
+        fun disMiss()
     }
 }

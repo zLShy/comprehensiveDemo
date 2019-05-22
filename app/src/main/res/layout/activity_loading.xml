@@ -7,6 +7,15 @@
     android:gravity="center"
     android:layout_height="match_parent">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/bubble_tv"
+        android:textSize="20sp"
+        android:text="123"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <!--<com.shy.zlread.weight.LoadingView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->
@@ -16,7 +25,8 @@
         <!--android:id="@+id/flower_loading"-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"/>-->
-    <com.shy.zlread.weight.BubbleView
+    <com.shy.zlread.weight.MessageBubbleView
+        android:id="@+id/bubble_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
