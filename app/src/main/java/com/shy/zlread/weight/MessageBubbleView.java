@@ -1,8 +1,11 @@
 package com.shy.zlread.weight;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,10 +17,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.OvershootInterpolator;
 
-import com.shy.zlread.LoadingActivity;
 import com.shy.zlread.utils.BubbleOnTouchListener;
 import com.shy.zlread.utils.BubbleUtils;
 
@@ -36,6 +37,8 @@ public class MessageBubbleView extends View {
     private int mFixationRadiusMax = 7;
     private int mFixationRadiusMin = 3;
     private int mFixationRadius;
+    private MessageBubbleListener mListener;
+    private Bitmap mBitmap;
 
     public MessageBubbleView(Context context) {
         this(context, null);
@@ -70,7 +73,9 @@ public class MessageBubbleView extends View {
         canvas.drawCircle(mDragPoint.x, mDragPoint.y, mDragRadius, mPaint);
         // 画固定圆  有一个初始化大小 而且他的半径是随着距离的增大而减小 小到一定层度就不见了（不画了）
         // 两个点的距离
-
+        if (mBitmap != null) {
+            canvas.drawBitmap(mBitmap, mDragPoint.x - mBitmap.getWidth() / 2, mDragPoint.y - mBitmap.getHeight() / 2, null);
+        }
         Path bezeierPath = getBezeierPath();
         if (bezeierPath != null) {
             // 小到一定层度就不见了（不画了）
@@ -197,10 +202,9 @@ public class MessageBubbleView extends View {
         return new PointF((mDragPoint.x + mFixationPoint.x) / 2, (mDragPoint.y + mFixationPoint.y) / 2);
     }
 
-    public static void attchView(View view, disapperListener listener) {
+    public static void attchView(View view, BubbleOnTouchListener.disapperListener listener) {
 
-        view.setOnTouchListener(new BubbleOnTouchListener(view, view.getContext()));
-
+        view.setOnTouchListener(new BubbleOnTouchListener(listener, view, view.getContext()));
     }
 
     /**
@@ -210,31 +214,53 @@ public class MessageBubbleView extends View {
         double distance = getDistance(mDragPoint, mFixationPoint);
 
         mFixationRadius = (int) (mFixationRadiusMax - distance / 14);
-        final PointF start = new PointF(mDragPoint.x,mDragPoint.y);
-        final PointF end = new PointF(mFixationPoint.x,mFixationPoint.y);
+        final PointF start = new PointF(mDragPoint.x, mDragPoint.y);
+        final PointF end = new PointF(mFixationPoint.x, mFixationPoint.y);
         if (mFixationRadius < mFixationRadiusMin) {
 
+            if (mListener != null) {
+                mListener.dismiss(mDragPoint);
+            }
 
         } else {
-            ValueAnimator animator =  ObjectAnimator.ofFloat(1);
-            animator.setInterpolator(new AnticipateOvershootInterpolator());
+
+            ValueAnimator animator = ObjectAnimator.ofFloat(1);
+            animator.setInterpolator(new OvershootInterpolator(3.0f));
             animator.setDuration(200);
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-                   float percent = (float) animation.getAnimatedValue();
-                    PointF centPointF = BubbleUtils.getPointByPercent(start,end,percent);
-                    updateDragPoint(centPointF.x,centPointF.y);
+                    float percent = (float) animation.getAnimatedValue();
+                    PointF centPointF = BubbleUtils.getPointByPercent(start, end, percent);
+                    updateDragPoint(centPointF.x, centPointF.y);
+                }
+            });
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mBitmap = null;
+                    if (mListener != null) {
+                        mListener.restore();
+                    }
                 }
             });
             animator.start();
-
         }
 
     }
 
+    public void setBitmap(Bitmap bitmap) {
+        this.mBitmap = bitmap;
+    }
 
-    public interface disapperListener {
-        void disMiss();
+
+    public void setmListener(MessageBubbleListener mListener) {
+        this.mListener = mListener;
+    }
+
+    public interface MessageBubbleListener {
+        void restore();
+
+        void dismiss(PointF pointF);
     }
 }
