@@ -41,13 +41,16 @@
         <activity android:name=".FruitDetailsActivity" />
         <activity android:name=".MDBehaviorActivity" />
         <activity android:name=".BehavorActivity" />
-        <activity android:name=".BlueToothActivity" />
+        <!-- <activity android:name=".FlowerFlyActivity" /> -->
 
         <service android:name="com.inuker.bluetooth.library.BluetoothService" />
 
         <activity android:name=".RecyclerViewActivity" />
-        <activity android:name=".LoadingActivity" />
-        <activity android:name=".ListDataSelectActivity"></activity>
+        <!--<activity android:name=".LoadingActivity" />-->
+        <activity android:name=".ListDataSelectActivity" />
+        <!-- <activity android:name=".SplashActivity"></activity> -->
+        <!--<activity android:name=".TouchViewActivity"></activity>-->
     </application>
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

@@ -11,7 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baseadapterlibrary" />
             <option value="$PROJECT_DIR$/baselibrary" />
-            <option value="$PROJECT_DIR$/openCVLibs" />
+            <option value="$PROJECT_DIR$/sdk" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

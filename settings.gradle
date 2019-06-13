@@ -1,2 +1,1 @@
-include ':app', ':baselibrary', ':baseadapterlibrary'
-include ':openCVLibs'
+include ':app', ':baselibrary', ':baseadapterlibrary', ':sdk'

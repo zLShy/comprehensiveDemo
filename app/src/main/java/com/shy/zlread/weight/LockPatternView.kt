@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.shy.zlread.bean.Point
+import com.shy.zlread.bean.PointKt
 import com.shy.zlread.utils.MathUtil
 
 /**
@@ -26,12 +26,12 @@ class LockPatternView @JvmOverloads constructor(context: Context,attributeSet: A
     private var isInit = false
     private var mWidth = 0
     private var mHeight = 0
-    private var mPoints: Array<Array<Point?>> = Array(3) { Array<Point?>(3, { null }) }
+    private var mPointKts: Array<Array<PointKt?>> = Array(3) { Array<PointKt?>(3, { null }) }
     private var mRadius = 0
     private var mMovingX = 0f
     private var mMovingY = 0f
     private var isTouchPoint = false
-    private var mSelectPoint = ArrayList<Point>()
+    private var mSelectPoint = ArrayList<PointKt>()
     init {
         mNormalPaint = Paint()
         mNormalPaint.style = Paint.Style.STROKE
@@ -50,34 +50,34 @@ class LockPatternView @JvmOverloads constructor(context: Context,attributeSet: A
                 var squaredHeight = width / 3
                 var offsetX = (width - height) / 2
                 mRadius = squaredHeight / 2
-                mPoints[0][0] = Point(offsetX + squaredHeight / 2, squaredHeight / 2, 0)
-                mPoints[0][1] = Point(offsetX + squaredHeight * 3 / 2, squaredHeight / 2, 1)
-                mPoints[0][2] = Point(offsetX + squaredHeight * 5 / 2, squaredHeight / 2, 2)
-                mPoints[1][0] = Point(offsetX + squaredHeight / 2, squaredHeight * 3 / 2, 3)
-                mPoints[1][1] = Point(offsetX + squaredHeight * 3 / 2, squaredHeight * 3 / 2, 4)
-                mPoints[1][2] = Point(offsetX + squaredHeight * 5 / 2, squaredHeight * 3 / 2, 5)
-                mPoints[2][0] = Point(offsetX + squaredHeight / 2, squaredHeight * 5 / 2, 6)
-                mPoints[2][1] = Point(offsetX + squaredHeight * 3 / 2, squaredHeight * 5 / 2, 7)
-                mPoints[2][2] = Point(offsetX + squaredHeight * 5 / 2, squaredHeight * 5 / 2, 8)
+                mPointKts[0][0] = PointKt(offsetX + squaredHeight / 2, squaredHeight / 2, 0)
+                mPointKts[0][1] = PointKt(offsetX + squaredHeight * 3 / 2, squaredHeight / 2, 1)
+                mPointKts[0][2] = PointKt(offsetX + squaredHeight * 5 / 2, squaredHeight / 2, 2)
+                mPointKts[1][0] = PointKt(offsetX + squaredHeight / 2, squaredHeight * 3 / 2, 3)
+                mPointKts[1][1] = PointKt(offsetX + squaredHeight * 3 / 2, squaredHeight * 3 / 2, 4)
+                mPointKts[1][2] = PointKt(offsetX + squaredHeight * 5 / 2, squaredHeight * 3 / 2, 5)
+                mPointKts[2][0] = PointKt(offsetX + squaredHeight / 2, squaredHeight * 5 / 2, 6)
+                mPointKts[2][1] = PointKt(offsetX + squaredHeight * 3 / 2, squaredHeight * 5 / 2, 7)
+                mPointKts[2][2] = PointKt(offsetX + squaredHeight * 5 / 2, squaredHeight * 5 / 2, 8)
 
             }else{
                 var squaredWidth = width / 3
                 var offsetY = (height - width) / 2
                 mRadius = squaredWidth / 2
-                mPoints[0][0] = Point(squaredWidth / 2, offsetY + squaredWidth / 2, 0)
-                mPoints[0][1] = Point(squaredWidth * 3 / 2, offsetY + squaredWidth / 2, 1)
-                mPoints[0][2] = Point(squaredWidth * 5 / 2, offsetY + squaredWidth / 2, 2)
-                mPoints[1][0] = Point(squaredWidth / 2, offsetY + squaredWidth * 3 / 2, 3)
-                mPoints[1][1] = Point(squaredWidth * 3 / 2, offsetY + squaredWidth  * 3 / 2, 4)
-                mPoints[1][2] = Point(squaredWidth * 5 / 2, offsetY + squaredWidth * 3 / 2, 5)
-                mPoints[2][0] = Point(squaredWidth / 2, offsetY + squaredWidth * 5 / 2, 6)
-                mPoints[2][1] = Point(squaredWidth * 3 / 2, offsetY + squaredWidth * 5 / 2, 7)
-                mPoints[2][2] = Point(squaredWidth * 5 / 2, offsetY + squaredWidth * 5 / 2, 8)
+                mPointKts[0][0] = PointKt(squaredWidth / 2, offsetY + squaredWidth / 2, 0)
+                mPointKts[0][1] = PointKt(squaredWidth * 3 / 2, offsetY + squaredWidth / 2, 1)
+                mPointKts[0][2] = PointKt(squaredWidth * 5 / 2, offsetY + squaredWidth / 2, 2)
+                mPointKts[1][0] = PointKt(squaredWidth / 2, offsetY + squaredWidth * 3 / 2, 3)
+                mPointKts[1][1] = PointKt(squaredWidth * 3 / 2, offsetY + squaredWidth  * 3 / 2, 4)
+                mPointKts[1][2] = PointKt(squaredWidth * 5 / 2, offsetY + squaredWidth * 3 / 2, 5)
+                mPointKts[2][0] = PointKt(squaredWidth / 2, offsetY + squaredWidth * 5 / 2, 6)
+                mPointKts[2][1] = PointKt(squaredWidth * 3 / 2, offsetY + squaredWidth * 5 / 2, 7)
+                mPointKts[2][2] = PointKt(squaredWidth * 5 / 2, offsetY + squaredWidth * 5 / 2, 8)
             }
 
         }
 
-        for (mPoint in mPoints) {
+        for (mPoint in mPointKts) {
             for (point in mPoint) {
                 if (point!!.isStatusNormal()) {
                     mNormalPaint.color = Color.RED
@@ -109,7 +109,7 @@ class LockPatternView @JvmOverloads constructor(context: Context,attributeSet: A
         when(event.action) {
             MotionEvent.ACTION_DOWN -> {
 
-                var point = point
+                var point = pointKt
                 if (point != null) {
                     isTouchPoint = true
                     mSelectPoint.add(point)
@@ -132,9 +132,9 @@ class LockPatternView @JvmOverloads constructor(context: Context,attributeSet: A
      * 获取按下的点
      * @return 当前按下的点
      */
-    private val point: Point? get() {
+    private val pointKt: PointKt? get() {
             for (i in 0..2) {
-                for (point in mPoints[i]) {
+                for (point in mPointKts[i]) {
                     // for 循环九个点，判断手指位置是否在这个九个点里面
                     if (MathUtil.checkInRound(point!!.centerX.toFloat(), point.centerY.toFloat(),
                                     mRadius.toFloat(), mMovingX, mMovingY)) {

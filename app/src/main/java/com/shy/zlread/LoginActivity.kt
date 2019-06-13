@@ -1,7 +1,9 @@
 package com.shy.zlread
 
+import Anim.AnimBaiYeChuang
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.PixelFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,6 +15,7 @@ import com.shy.zlread.presenter.ILoginPresenter
 import com.shy.zlread.presenter.LoginPresenterImp
 import com.shy.zlread.utils.statusBarUtil
 import com.shy.zlread.view.ILoginView
+import com.shy.zlread.weight.FireworksBackGround
 import com.zl.map.Utils.BaseActicity
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -28,9 +31,13 @@ class LoginActivity : BaseActicity(), ILoginView {
             mILoginPresenterImp!!.doLogin()
         }
 
+
 //        statusBarUtil.setStatusBar(this,Color.CYAN)
         statusBarUtil.setActivityFullScreen(this)
+        Log.e("TGA", "random-----> ${Math.random()}")
 
+        var imageBitmap = FireworksBackGround(resources.displayMetrics.widthPixels.toFloat(), resources.displayMetrics.heightPixels.toFloat())
+        image_iv.setImageDrawable(imageBitmap)
         Log.e("TAG", "model -> " + android.os.Build.MODEL)
         Log.e("TAG", "hardware -> " + android.os.Build.HARDWARE)
         Log.e("TAG", "board -> " + android.os.Build.BOARD)
@@ -39,11 +46,11 @@ class LoginActivity : BaseActicity(), ILoginView {
         val sum: (Int, Int) -> Int = { x, y -> x + y }
         val sub = { a: Int, b: Int -> a - b }
         Log.e("TAG", "lambed->${sum.invoke(1, 2)}")
-        Log.e("TAG","lambed->${sub(3,2)}")
+        Log.e("TAG", "lambed->${sub(3, 2)}")
 
 
-        val add = {  -> 4}
-        Log.e("TAG","lambed->${add()}")
+        val add = { -> 4 }
+        Log.e("TAG", "lambed->${add()}")
 //        Glide.with(this).load("https://sys.cegzm.com/adver/102.gif").asGif().into(image_iv)
         login_btn.visible()
     }
@@ -51,9 +58,11 @@ class LoginActivity : BaseActicity(), ILoginView {
     fun View.visible() {
         visibility = View.VISIBLE
     }
+
     fun Button.OnClick() {
         mILoginPresenterImp!!.doLogin()
     }
+
     override fun getCount(): String {
 
         return login_count_et.text.toString().trim()
@@ -79,14 +88,14 @@ class LoginActivity : BaseActicity(), ILoginView {
 
     override fun loginSuccess() {
 
-        var mIntent = Intent(this@LoginActivity, LoadingActivity::class.java)
+        var mIntent = Intent(this@LoginActivity, OpenCVActivity::class.java)
         startActivity(mIntent)
         finish()
     }
 
     override fun showToast(reason: String) {
 //        Toast.makeText(this@LoginActivity, reason, Toast.LENGTH_SHORT).show()
-        var mIntent = Intent(this@LoginActivity, LoadingActivity::class.java)
+        var mIntent = Intent(this@LoginActivity, OpenCVActivity::class.java)
         startActivity(mIntent)
         finish()
     }
