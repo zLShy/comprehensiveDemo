@@ -4,12 +4,13 @@ import android.content.Context;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.shy.baseadapterlibrary.RecyclerCommonAdapter;
-import com.shy.baseadapterlibrary.ViewHolder;
 import com.shy.zlread.R;
 import com.shy.zlread.bean.TestBean;
 
 import java.util.List;
+
+import commonAdapter.RecyclerCommonAdapter;
+import commonAdapter.ViewHolder;
 
 /**
  * Created by zhangli on 2019/4/24.

@@ -12,18 +12,18 @@ import org.opencv.core.Mat
 import java.io.File
 
 class OpenCVActivity : AppCompatActivity() {
-    companion object {
-        val mBasePath = Environment.getExternalStorageDirectory().toString() + File.separator
-        val mImgName = "debug01_1526659262410.png"
-        var mSrcMat: Mat? = null
-        var mTargetMat: Mat? = null
-    }
+//    companion object {
+//        val mBasePath = Environment.getExternalStorageDirectory().toString() + File.separator
+//        val mImgName = "debug01_1526659262410.png"
+//        var mSrcMat: Mat? = null
+//        var mTargetMat: Mat? = null
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_open_cv)
 
-        mSrcMat = Mat()
+//        mSrcMat = Mat()
 
 
 //        var callback = object : LoaderCallbackInterface {
@@ -56,8 +56,8 @@ class OpenCVActivity : AppCompatActivity() {
     }
 
 
-    fun startActivity() {
-        var intent = Intent()
-//        intent.setClass(this,)
-    }
+//    fun startActivity() {
+//        var intent = Intent()
+////        intent.setClass(this,)
+//    }
 }

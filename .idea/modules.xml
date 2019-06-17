@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ZLRead.iml" filepath="$PROJECT_DIR$/ZLRead.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/baseadapterlibrary/baseadapterlibrary.iml" filepath="$PROJECT_DIR$/baseadapterlibrary/baseadapterlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/baselibrary/baselibrary.iml" filepath="$PROJECT_DIR$/baselibrary/baselibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/framelibrary/framelibrary.iml" filepath="$PROJECT_DIR$/framelibrary/framelibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/openCvLibary/openCvLibary.iml" filepath="$PROJECT_DIR$/openCvLibary/openCvLibary.iml" />
       <module fileurl="file://$PROJECT_DIR$/sdk/sdk.iml" filepath="$PROJECT_DIR$/sdk/sdk.iml" />
     </modules>

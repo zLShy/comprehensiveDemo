@@ -61,8 +61,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.inuker.bluetooth:library:1.4.0'
     compile 'com.alipay.euler:andfix:0.5.0@aar'
-    implementation project(':baseadapterlibrary')
+    //    implementation project(':baseadapterlibrary')
     implementation project(':baselibrary')
     implementation 'com.android.support:percent:26.1.0'
     implementation project(':sdk')
+    implementation project(':framelibrary')
 }
