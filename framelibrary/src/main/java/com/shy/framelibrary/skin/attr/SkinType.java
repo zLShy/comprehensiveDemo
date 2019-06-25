@@ -7,16 +7,33 @@ import android.view.View;
  */
 
 public enum SkinType {
-    TEXT_COLOR("textcolor"), BACKGROUND("background"), SRC("src");
+    TEXT_COLOR("textcolor") {
+        @Override
+        public void skin(View view, String mResName) {
+
+        }
+    }, BACKGROUND("background") {
+        @Override
+        public void skin(View view, String mResName) {
+
+        }
+    }, SRC("src") {
+        @Override
+        public void skin(View view, String mResName) {
+
+        }
+    };
 
     private String mResName;
 
-    private SkinType(String resName) {
+    SkinType(String resName) {
 
         this.mResName = resName;
     }
 
-    public void skin(View view, String mResName) {
+    public abstract void skin(View view, String mResName);
 
+    public String  getName() {
+        return mResName;
     }
 }

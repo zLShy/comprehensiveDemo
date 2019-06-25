@@ -11,9 +11,14 @@ public class SkinAttr {
     private String mResName;
     private SkinType mType;
 
+    public SkinAttr(SkinType skinType, String resName) {
+        this.mResName = resName;
+        this.mType = skinType;
+    }
+
     public void skin(View view) {
 
-        mType.skin(view,mResName);
+        mType.skin(view, mResName);
     }
 
 }

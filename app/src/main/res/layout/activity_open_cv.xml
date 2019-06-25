@@ -7,18 +7,11 @@
     android:layout_height="match_parent">
 
 
-    <!--<ImageView-->
-        <!--android:id="@+id/normal"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-
-    <!--<ImageView-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--android:id="@+id/operat_iv"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-    <com.shy.zlread.weight.HeartView
+    <!--<com.shy.zlread.weight.HeartView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+    <com.shy.zlread.weight.WaveView
+        app:waveHeight="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>
