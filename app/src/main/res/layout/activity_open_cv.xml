@@ -14,4 +14,9 @@
         app:waveHeight="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <!--<com.shy.zlread.weight.BezierPath-->
+        <!--android:id="@+id/biv"-->
+        <!--android:src="@mipmap/ic_launcher_round"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
 </android.support.constraint.ConstraintLayout>

@@ -31,7 +31,7 @@ public class WaveView extends View {
         this(context, null);
     }
 
-    private int cycle = 200;
+    private int cycle = 100;
 
     public WaveView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
@@ -52,7 +52,7 @@ public class WaveView extends View {
         array.recycle();
 
         mPaint = new Paint();
-        mPaint.setColor(Color.GRAY);
+        mPaint.setColor(Color.CYAN);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setDither(true);
@@ -75,35 +75,33 @@ public class WaveView extends View {
         Path path = new Path();
         path.moveTo(startPoint.x, startPoint.y);
         int j = 1;
-        //循环绘制正弦曲线 循环一次半个周期
         for (int i = 1; i <= 8; i++) {
             if (i % 2 == 0) {
-                //波峰
                 path.quadTo(startPoint.x + (cycle * j), startPoint.y + mWaveHeight,
                         startPoint.x + (cycle * 2) * i, startPoint.y);
+
             } else {
-                //波谷
                 path.quadTo(startPoint.x + (cycle * j), startPoint.y - mWaveHeight,
                         startPoint.x + (cycle * 2) * i, startPoint.y);
             }
+
             j += 2;
         }
-        //绘制封闭的曲线
-        path.lineTo(width, height);//右下角
-        path.lineTo(startPoint.x, height);//左下角
-        path.lineTo(startPoint.x, startPoint.y);//起点
+        path.lineTo(width, height);
+        path.lineTo(startPoint.x, height);
+        path.lineTo(startPoint.x, startPoint.y);
+
         path.close();
         canvas.drawPath(path, mPaint);
 
-        //判断是不是平移完了一个周期
-        if (startPoint.x + 40 >= 0) {
-            //满了一个周期则恢复默认起点继续平移
+        if (startPoint.x + 40 > 0) {
             startPoint.x = -cycle * 4;
         }
-//每次波形的平移量 40
+
         startPoint.x += 40;
         postInvalidateDelayed(150);
         path.reset();
+
 
     }
 

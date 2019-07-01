@@ -47,8 +47,6 @@ public class HeartView extends SurfaceView implements SurfaceHolder.Callback {
         garden = new Garden();
         backgroundPaint = new Paint();
         backgroundPaint.setColor(Color.rgb(0xff, 0xff, 0xe0));
-
-
     }
 
     ArrayList<Bloom> blooms = new ArrayList<>();

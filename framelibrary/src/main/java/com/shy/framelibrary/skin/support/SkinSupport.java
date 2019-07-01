@@ -43,7 +43,7 @@ public class SkinSupport {
             }
         }
 
-        return null;
+        return mAttrs;
     }
 
     private static String getResource(Context context, String attrValue) {

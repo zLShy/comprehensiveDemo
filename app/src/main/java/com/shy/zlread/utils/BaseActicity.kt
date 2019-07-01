@@ -9,13 +9,14 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import com.shy.framelibrary.skin.SkinActivity
 import com.shy.zlread.MyApplication
 import java.io.File
 
 /**
  * Created by zhangli on 2018/7/27.
  */
-open class BaseActicity : AppCompatActivity() {
+open class BaseActicity : SkinActivity() {
 
     /**
      * 判断是否有权限

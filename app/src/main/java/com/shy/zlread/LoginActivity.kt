@@ -12,14 +12,15 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.shy.zlread.presenter.ILoginPresenter
 import com.shy.zlread.presenter.LoginPresenterImp
-import com.shy.zlread.utils.SkinActivity
+import com.shy.framelibrary.skin.SkinActivity
+import com.shy.zlread.R
 import com.shy.zlread.utils.statusBarUtil
 import com.shy.zlread.view.ILoginView
 import com.shy.zlread.weight.FireworksBackGround
 import com.zl.map.Utils.BaseActicity
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : SkinActivity(), ILoginView {
+class LoginActivity : BaseActicity(), ILoginView {
     private var mILoginPresenterImp: ILoginPresenter? = null
     private var mContext: Context? = null
     override fun onCreate(savedInstanceState: Bundle?) {

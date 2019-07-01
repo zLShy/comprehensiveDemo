@@ -11,16 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switchSkin" />
-
-    <TextView
-        android:id="@+id/bubble_tv"
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@color/circle"
-        android:padding="10dp"
-        android:text="123"
-        android:textSize="20sp" />
+        android:onClick="restore" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/bubble_tv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:background="@color/circle"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="123"-->
+        <!--android:textSize="20sp" />-->
 
     <ImageView
         android:id="@+id/image_view"
@@ -36,8 +40,8 @@
     <!--android:id="@+id/flower_loading"-->
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"/>-->
-    <com.shy.zlread.weight.MessageBubbleView
-        android:id="@+id/bubble_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <!--<com.shy.zlread.weight.MessageBubbleView-->
+        <!--android:id="@+id/bubble_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 </LinearLayout>

@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
+apply plugin: 'org.greenrobot.greendao'
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -30,6 +30,12 @@ android {
 
 }
 
+greendao{
+    schemaVersion 1
+    daoPackage 'com.zl.greendao.gen'
+    targetGenDir 'src/main/java'
+
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -65,4 +71,5 @@ dependencies {
     implementation 'com.android.support:percent:26.1.0'
     implementation project(':sdk')
     implementation project(':framelibrary')
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
 }
