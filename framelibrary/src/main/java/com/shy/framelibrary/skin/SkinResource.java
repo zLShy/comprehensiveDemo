@@ -29,14 +29,10 @@ public class SkinResource {
             AssetManager manager = AssetManager.class.newInstance();
             Method method = AssetManager.class.getMethod("addAssetPath", String.class);
             method.setAccessible(true);
-            method.invoke(manager, Environment.getExternalStorageDirectory().getAbsolutePath()
-                    + File.separator
-                    + "bluetooth"
-                    + File.separator
-                    + "red.skin.apk");
+            method.invoke(manager, skinPath);
             mResources = new Resources(manager, superRes.getDisplayMetrics(), superRes.getConfiguration());
             // 获取skinPath包名
-            Log.e(TAG,"PackageName--->"+mPackageName);
+            Log.e(TAG, "PackageName--->" + mPackageName);
             mPackageName = context.getPackageManager().getPackageArchiveInfo(
                     skinPath, PackageManager.GET_ACTIVITIES).packageName;
 

@@ -1,6 +1,7 @@
 package com.shy.zlread;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Environment;
 import android.os.Bundle;
 import android.view.View;
@@ -115,5 +116,11 @@ public class LoadingActivity extends BaseActicity {
 
     public void restore(View view) {
         int result = SkinManager.getInstance().restoreDefalut();
+    }
+
+    public void intentActivity(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this,LoadingActivity.class);
+        startActivity(intent);
     }
 }

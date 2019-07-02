@@ -2,10 +2,14 @@ package com.shy.framelibrary.skin;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.text.TextUtils;
 import android.util.ArrayMap;
 
 import com.shy.framelibrary.skin.attr.SkinView;
+import com.shy.framelibrary.skin.config.SkinPreUtils;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +40,27 @@ public class SkinManager {
     public void init(Context context) {
 
         this.mContext = context.getApplicationContext();
+
+        /**
+         *判断文件路径是否存在
+         */
+        String currentPath = SkinPreUtils.getInStance(mContext).getSkinPath();
+        File file = new File(currentPath);
+        if (!file.exists()) {
+            SkinPreUtils.getInStance(mContext).clearSkinPath();
+            return;
+        }
+
+        /**
+         * 判断apk包名
+         */
+        String packageName = context.getPackageManager().getPackageArchiveInfo(
+                currentPath, PackageManager.GET_ACTIVITIES).packageName;
+        if (TextUtils.isEmpty(packageName)) {
+            SkinPreUtils.getInStance(mContext).clearSkinPath();
+            return;
+        }
+        mResource = new SkinResource(mContext, currentPath);
     }
 
     public int loadSkin(String path) {
@@ -48,7 +73,13 @@ public class SkinManager {
                 skinView.skin();
             }
         }
+
+        saveSkinStatus(path);
         return 0;
+    }
+
+    private void saveSkinStatus(String path) {
+        SkinPreUtils.getInStance(mContext).saveSkinPath(path);
     }
 
     public int restoreDefalut() {
@@ -72,5 +103,12 @@ public class SkinManager {
 
     public void unRegister(Activity activity) {
         mSkinViews.remove(activity);
+    }
+
+    public void checkSkin(SkinView skinView) {
+        String skinPath = SkinPreUtils.getInStance(mContext).getSkinPath();
+        if (!TextUtils.isEmpty(skinPath)) {
+            skinView.skin();
+        }
     }
 }

@@ -17,6 +17,7 @@ import android.view.ViewParent;
 import com.shy.framelibrary.skin.SkinManager;
 import com.shy.framelibrary.skin.attr.SkinAttr;
 import com.shy.framelibrary.skin.attr.SkinView;
+import com.shy.framelibrary.skin.config.SkinPreUtils;
 import com.shy.framelibrary.skin.support.SkinAppCompatViewInflater;
 import com.shy.framelibrary.skin.support.SkinSupport;
 
@@ -60,6 +61,9 @@ public class SkinActivity extends AppCompatActivity {
             SkinView skinView = new SkinView(view, skinAttrs);
             //交给SkinManager管理
             managerSkinView(skinView);
+
+            // 管理皮肤
+            SkinManager.getInstance().checkSkin(skinView);
         }
 
         return view;
@@ -69,7 +73,7 @@ public class SkinActivity extends AppCompatActivity {
         List<SkinView> skinViews = SkinManager.getInstance().getSkinView(this);
         if (skinViews == null) {
             skinViews = new ArrayList<>();
-            SkinManager.getInstance().regist(this,skinViews);
+            SkinManager.getInstance().regist(this, skinViews);
         }
         skinViews.add(skinView);
     }
