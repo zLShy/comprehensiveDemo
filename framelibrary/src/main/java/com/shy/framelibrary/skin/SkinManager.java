@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.ArrayMap;
+import android.util.Log;
 
 import com.shy.framelibrary.skin.attr.SkinView;
+import com.shy.framelibrary.skin.config.SkinConfig;
 import com.shy.framelibrary.skin.config.SkinPreUtils;
 
 import java.io.File;
@@ -15,12 +17,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 /**
  * Created by zhangli on 2019/6/14.
  */
 
 public class SkinManager {
 
+    private static final String TAG = SkinManager.class.getSimpleName();
     private static SkinManager mInstance;
 
     private static Map<Activity, List<SkinView>> mSkinViews = new ArrayMap<>();
@@ -84,7 +88,26 @@ public class SkinManager {
 
     public int restoreDefalut() {
 
-        return 0;
+        String currentPath = SkinPreUtils.getInStance(mContext).getSkinPath();
+        Log.e(TAG,currentPath);
+        if (TextUtils.isEmpty(currentPath)) {
+            return SkinConfig.SKIN_FILE_NOTEXITS;
+        }
+
+        String apkPath = mContext.getPackageResourcePath();
+        Log.e(TAG,apkPath);
+        mResource = new SkinResource(mContext, apkPath);
+
+        Set<Activity> keys = mSkinViews.keySet();
+        for (Activity key : keys) {
+            List<SkinView> skinViews = mSkinViews.get(key);
+            for (SkinView skinView : skinViews) {
+                skinView.skin();
+            }
+        }
+
+        SkinPreUtils.getInStance(mContext).clearSkinPath();
+        return SkinConfig.SKIN_SUCCESS;
     }
 
     public List<SkinView> getSkinView(Activity activity) {

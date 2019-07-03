@@ -27,7 +27,7 @@ public class ExceptionCarshHandler implements Thread.UncaughtExceptionHandler {
     }
 
     public void init(Context context) {
-        this.mContext = context;
+        this.mContext = context.getApplicationContext();
         Thread.currentThread().setUncaughtExceptionHandler(this);
         this.mDefaultHandler = Thread.currentThread().getDefaultUncaughtExceptionHandler();
 

@@ -21,21 +21,23 @@ public class SkinResource {
     private Resources mResources;
     private String mPackageName;
     private static final String TAG = "SkinResource";
+    private Context mContext;
 
     public SkinResource(Context context, String skinPath) {
 
         try {
             Resources superRes = context.getResources();
+            mContext = context.getApplicationContext();
             AssetManager manager = AssetManager.class.newInstance();
             Method method = AssetManager.class.getMethod("addAssetPath", String.class);
             method.setAccessible(true);
             method.invoke(manager, skinPath);
             mResources = new Resources(manager, superRes.getDisplayMetrics(), superRes.getConfiguration());
             // 获取skinPath包名
-            Log.e(TAG, "PackageName--->" + mPackageName);
+
             mPackageName = context.getPackageManager().getPackageArchiveInfo(
                     skinPath, PackageManager.GET_ACTIVITIES).packageName;
-
+            Log.e(TAG, "PackageName--->" + mPackageName);
 //            int drawableid = resources.getIdentifier("img", "drawable", "com.shy.jnitest");
 //            Drawable drawable = resources.getDrawable(drawableid);
         } catch (Exception e) {
@@ -51,10 +53,20 @@ public class SkinResource {
      */
     public Drawable getDrawable(String resName) {
         try {
-            int resId = mResources.getIdentifier(resName, "drawable", mPackageName);
-            Drawable drawable = mResources.getDrawable(resId);
+            Drawable drawable;
+            String ApkPath = mContext.getPackageManager().getPackageArchiveInfo(
+                    mContext.getPackageResourcePath(), PackageManager.GET_ACTIVITIES).packageName;
+            if (mPackageName.equals(ApkPath)) {
+                int resId = mContext.getResources().getIdentifier(resName, "drawable", mPackageName);
+                drawable = mContext.getResources().getDrawable(resId);
+            } else {
+                int resId = mResources.getIdentifier(resName, "drawable", mPackageName);
+                drawable = mResources.getDrawable(resId);
+            }
+
             return drawable;
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

@@ -10,4 +10,11 @@ public class SkinConfig {
 
     //皮肤存放名字
     public static final String SKIN_PATH = "skinPath";
+
+    public static final String SKIN_PACKAGENAME = "skinApkPath";
+    //皮肤文件不存在
+    public static final int SKIN_FILE_NOTEXITS = -1;
+    //操作成功
+    public static final int SKIN_SUCCESS = 1;
+
 }

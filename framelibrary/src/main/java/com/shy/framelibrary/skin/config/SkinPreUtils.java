@@ -53,4 +53,12 @@ public class SkinPreUtils {
     public void clearSkinPath() {
         saveSkinPath("");
     }
+
+    public void savePackageName(String packageName) {
+        mContext.getSharedPreferences(SkinConfig.SKIN_INFO, Context.MODE_PRIVATE).edit().putString(SkinConfig.SKIN_PACKAGENAME, packageName).commit();
+    }
+
+    public String getPackageName() {
+        return mContext.getSharedPreferences(SkinConfig.SKIN_INFO, Context.MODE_PRIVATE).getString(SkinConfig.SKIN_PACKAGENAME, "");
+    }
 }

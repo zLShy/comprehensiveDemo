@@ -18,6 +18,7 @@ import com.zl.greendao.gen.DaoMaster;
 import com.zl.greendao.gen.DaoSession;
 
 
+
 /**
  * Created by zhangli on 2018/6/14.
  */

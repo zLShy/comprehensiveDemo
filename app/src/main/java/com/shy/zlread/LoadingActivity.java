@@ -2,8 +2,12 @@ package com.shy.zlread;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +20,8 @@ import com.zl.map.Utils.BaseActicity;
 import com.zl.map.Utils.Constants;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class LoadingActivity extends BaseActicity {
 
@@ -23,6 +29,7 @@ public class LoadingActivity extends BaseActicity {
     private BubbleView mBubbleView;
     private TextView tv;
     private ImageView iv;
+    private Resources mResources;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,22 @@ public class LoadingActivity extends BaseActicity {
         setContentView(R.layout.activity_loading);
 //        tv = (TextView) findViewById(R.id.bubble_tv);
         iv = (ImageView) findViewById(R.id.image_view);
+        Resources superRes = getResources();
+        AssetManager manager = null;
+        try {
+            manager = AssetManager.class.newInstance();
+            Method method = AssetManager.class.getMethod("addAssetPath", String.class);
+//            method.setAccessible(true);
+            method.invoke(manager, this.getApplicationContext().getPackageResourcePath());
+            mResources = new Resources(manager, superRes.getDisplayMetrics(), superRes.getConfiguration());
+            int resId = mResources.getIdentifier("pl_blue", "drawable", getPackageName());
+//            Class mipmap = R.drawable.class;
+//            Field field = mipmap.getField("img");
+//            int resId = field.getInt("img");
+            Log.e("TGA","resId--->"+resId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 //        Resources resources = new Resources();
 //        mFlowerLoadingView = (FlowerLoadingView) findViewById(R.id.flower_loading);
@@ -77,21 +100,17 @@ public class LoadingActivity extends BaseActicity {
 
     @Override
     public void doSDcardPermission() {
-//        Resources superRes = getResources();
+        Resources superRes = getResources();
         try {
 //            AssetManager manager = AssetManager.class.newInstance();
 //            Method method = AssetManager.class.getMethod("addAssetPath", String.class);
-//            method.setAccessible(true);
-//            method.invoke(manager, Environment.getExternalStorageDirectory().getAbsolutePath()
-//                    + File.separator
-//                    + "bluetooth"
-//                    + File.separator
-//                    + "red.skin.apk");
+////            method.setAccessible(true);
+//            method.invoke(manager, getPackageResourcePath());
 //            Resources resources = new Resources(manager, superRes.getDisplayMetrics(), superRes.getConfiguration());
-//
-//            int drawableid = resources.getIdentifier("img", "drawable", "com.shy.jnitest");
-//            Drawable drawable = resources.getDrawable(drawableid);
-//            iv.setImageDrawable(drawable);
+
+            int drawableid = getResources().getIdentifier("pl_blue", "drawable", "com.shy.zlread");
+            Drawable drawable = getResources().getDrawable(drawableid);
+            iv.setImageDrawable(drawable);
             String path = Environment.getExternalStorageDirectory().getAbsolutePath()
                     + File.separator
                     + "bluetooth"
