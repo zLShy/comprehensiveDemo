@@ -108,9 +108,9 @@ public class LoadingActivity extends BaseActicity {
 //            method.invoke(manager, getPackageResourcePath());
 //            Resources resources = new Resources(manager, superRes.getDisplayMetrics(), superRes.getConfiguration());
 
-            int drawableid = getResources().getIdentifier("pl_blue", "drawable", "com.shy.zlread");
-            Drawable drawable = getResources().getDrawable(drawableid);
-            iv.setImageDrawable(drawable);
+//            int drawableid = getResources().getIdentifier("pl_blue", "drawable", "com.shy.zlread");
+//            Drawable drawable = getResources().getDrawable(drawableid);
+//            iv.setImageDrawable(drawable);
             String path = Environment.getExternalStorageDirectory().getAbsolutePath()
                     + File.separator
                     + "bluetooth"
