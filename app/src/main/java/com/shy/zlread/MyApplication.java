@@ -8,15 +8,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.shy.framelibrary.skin.SkinManager;
 import com.shy.zlread.utils.Tool;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.tencent.mmkv.MMKV;
+import com.yuntongxun.ecsdk.ECDevice;
 import com.zl.greendao.gen.DaoMaster;
 import com.zl.greendao.gen.DaoSession;
-
 
 
 /**
@@ -24,10 +26,12 @@ import com.zl.greendao.gen.DaoSession;
  */
 
 public class MyApplication extends Application {
-    private static Context mContext;
+    private final String TAG = MyApplication.class.getSimpleName();
+    private static MyApplication mInatance;
     public static PatchManager mPatchManager;
     private RefWatcher mRefWatcher;
     private static DaoSession daoSession;
+
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -39,7 +43,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext = getApplicationContext();
+        mInatance = this;
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return;
         }
@@ -57,6 +61,8 @@ public class MyApplication extends Application {
 //        LeakCanary.install(this);
         mRefWatcher = setupLeakCanary();
         initGreenDao();
+
+
     }
 
     private RefWatcher setupLeakCanary() {
@@ -73,8 +79,9 @@ public class MyApplication extends Application {
     }
 
 
-    public static Context getContext() {
-        return mContext;
+    public static MyApplication getInatance() {
+
+        return mInatance;
     }
 
     private Thread.UncaughtExceptionHandler handler = new Thread.UncaughtExceptionHandler() {

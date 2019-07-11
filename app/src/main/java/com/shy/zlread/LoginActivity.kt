@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -20,7 +21,7 @@ import com.shy.zlread.weight.FireworksBackGround
 import com.zl.map.Utils.BaseActicity
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : BaseActicity(), ILoginView {
+class LoginActivity : AppCompatActivity(), ILoginView {
     private var mILoginPresenterImp: ILoginPresenter? = null
     private var mContext: Context? = null
     override fun onCreate(savedInstanceState: Bundle?) {

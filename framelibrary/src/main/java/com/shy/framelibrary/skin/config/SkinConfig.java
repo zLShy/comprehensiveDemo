@@ -17,4 +17,7 @@ public class SkinConfig {
     //操作成功
     public static final int SKIN_SUCCESS = 1;
 
+    //APk 不存在
+    public static final int SKIN_NOT_APK = -2;
+
 }

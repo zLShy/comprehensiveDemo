@@ -2,21 +2,34 @@ package com.zl.map.Utils
 
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Bundle
 import android.os.Environment
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import com.shy.framelibrary.skin.SkinActivity
 import com.shy.zlread.MyApplication
+import com.yuntongxun.ecsdk.ECDevice
 import java.io.File
 
 /**
  * Created by zhangli on 2018/7/27.
  */
-open class BaseActicity : SkinActivity() {
+open abstract class BaseActicity : SkinActivity() {
+
+    var TAG = this::class.java.simpleName
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView()
+        initViews()
+        initDate()
+
+    }
 
     /**
      * 判断是否有权限
@@ -151,4 +164,14 @@ open class BaseActicity : SkinActivity() {
         } else {
         }
     }
+
+    //初始化数据
+    open abstract fun initDate()
+
+    //初始化界面
+    open abstract fun setContentView()
+
+    //初始化view
+    open abstract fun initViews()
+
 }

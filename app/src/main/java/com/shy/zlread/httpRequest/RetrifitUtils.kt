@@ -18,7 +18,7 @@ class RetrifitUtils {
     private var mApiService: ApiService? = null
 
     companion object {
-        val baseUrl = "http://api.douban.com/v2/movie/"
+        val baseUrl = "http://gank.io/api/"
     }
 
     fun getApiService(): ApiService{
@@ -53,7 +53,7 @@ class RetrifitUtils {
 
         }
 //        //设置缓存
-        val mCacheFile = File(MyApplication.getContext().cacheDir,"response")
+        val mCacheFile = File(MyApplication.getInatance().cacheDir,"response")
         val mCache = Cache(mCacheFile,1024*1024)
         val mClinet =  OkHttpClient.Builder()
                 .readTimeout(10000, TimeUnit.SECONDS)
@@ -84,7 +84,7 @@ class RetrifitUtils {
     private val mRewriteCacheControlInterceptor = Interceptor { chain ->
         var request = chain.request()
         val cacheControl = request.cacheControl().toString()
-        if (!LocalNetWorkUtils.isNetConnected(MyApplication.getContext())) {
+        if (!LocalNetWorkUtils.isNetConnected(MyApplication.getInatance())) {
             request = request.newBuilder()
                     .cacheControl(if (TextUtils.isEmpty(cacheControl))
                         CacheControl
@@ -94,7 +94,7 @@ class RetrifitUtils {
                     .build()
         }
         val originalResponse = chain.proceed(request)
-        if (LocalNetWorkUtils.isNetConnected(MyApplication.getContext())) {
+        if (LocalNetWorkUtils.isNetConnected(MyApplication.getInatance())) {
             originalResponse.newBuilder()
                     .header("Cache-Control", cacheControl)
                     //                        .addHeader("application/json", "charset=utf-8")

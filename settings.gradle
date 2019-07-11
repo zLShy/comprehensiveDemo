@@ -1,1 +1,1 @@
-include ':app', ':baselibrary', ':sdk', ':framelibrary'
+include ':app', ':baselibrary', ':sdk', ':framelibrary', ':IMKit', ':IMLib', ':CallLib', ':CallKit', ':RedPacket', ':RCSticker'

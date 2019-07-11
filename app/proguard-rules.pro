@@ -19,3 +19,5 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+#-libraryjars libs/Yuntx_IMLib_vx.x.x.jar(如果是Android Studio 此行忽略)
+-keep class com.yuntongxun.ecsdk.** {*; }

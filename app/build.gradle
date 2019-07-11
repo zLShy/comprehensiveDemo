@@ -20,6 +20,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
     }
     buildTypes {
         release {
@@ -30,7 +33,7 @@ android {
 
 }
 
-greendao{
+greendao {
     schemaVersion 1
     daoPackage 'com.zl.greendao.gen'
     targetGenDir 'src/main/java'
@@ -71,5 +74,14 @@ dependencies {
     implementation 'com.android.support:percent:26.1.0'
     implementation project(':sdk')
     implementation project(':framelibrary')
-    implementation 'org.greenrobot:greendao:3.2.2' // add library
+    implementation 'org.greenrobot:greendao:3.2.2'
+    // add library
+    implementation 'com.tencent:mmkv:1.0.22'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    implementation project(':CallKit')
+    implementation project(':CallLib')
+    implementation project(':IMKit')
+    implementation project(':IMLib')
+    implementation project(':RCSticker')
+    implementation project(':RedPacket')
 }
