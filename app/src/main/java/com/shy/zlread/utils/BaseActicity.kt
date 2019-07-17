@@ -7,14 +7,28 @@ import android.os.Environment
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import com.google.gson.Gson
 import com.shy.framelibrary.skin.SkinActivity
 import com.shy.zlread.MyApplication
-import com.yuntongxun.ecsdk.ECDevice
+import com.shy.zlread.bean.RongToken
+import com.shy.zlread.httpRequest.ApiMethods
+import com.shy.zlread.httpRequest.CallBacks
+import com.shy.zlread.httpRequest.ProgressObserver
+import com.shy.zlread.httpRequest.RetrifitUtils
+import com.shy.zlread.utils.RongCloudeUtils
+import io.rong.imkit.utilities.RongUtils
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.Response
 import java.io.File
+import java.io.IOException
+import java.net.URL
+import java.net.URLEncoder
 
 /**
  * Created by zhangli on 2018/7/27.
@@ -22,13 +36,11 @@ import java.io.File
 open abstract class BaseActicity : SkinActivity() {
 
     var TAG = this::class.java.simpleName
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView()
         initViews()
         initDate()
-
     }
 
     /**

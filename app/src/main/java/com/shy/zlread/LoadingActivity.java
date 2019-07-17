@@ -140,17 +140,17 @@ public class LoadingActivity extends BaseActicity {
 //        intent.setPackage("com.shy.ndkdemo");
         bindService(intent, mServiceConnection, BIND_AUTO_CREATE);
 
-        new ApiMethods().getTodayNews(new ProgressObserver(new CallBacks() {
-            @Override
-            public void onSuccess(@NotNull Object any) {
-                Log.e(TAG,any.toString());
-            }
-
-            @Override
-            public void onFailure(@NotNull Object any) {
-                Log.e(TAG,"fails");
-            }
-        }));
+//        new ApiMethods().getTodayNews(new ProgressObserver(new CallBacks() {
+//            @Override
+//            public void onSuccess(@NotNull Object any) {
+//                Log.e(TAG,any.toString());
+//            }
+//
+//            @Override
+//            public void onFailure(@NotNull Object any) {
+//                Log.e(TAG,"fails");
+//            }
+//        }));
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.post("http://api.douban.com/v2/movie/top250?start=25&count=25", new AsyncHttpResponseHandler() {

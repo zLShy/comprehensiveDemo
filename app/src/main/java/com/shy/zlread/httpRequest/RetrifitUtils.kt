@@ -18,7 +18,7 @@ class RetrifitUtils {
     private var mApiService: ApiService? = null
 
     companion object {
-        val baseUrl = "http://gank.io/api/"
+        var baseUrl = "http://gank.io/api/"
     }
 
     fun getApiService(): ApiService{

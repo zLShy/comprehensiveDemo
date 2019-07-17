@@ -11,7 +11,9 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.shy.zlread.ProcessConnection;
 import com.shy.zlread.R;
 
 /**
@@ -46,7 +48,8 @@ public class AwakenService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return new ProcessConnection.Stub() {
+        };
     }
 
 
@@ -57,20 +60,23 @@ public class AwakenService extends Service {
         mBuilder.setSmallIcon(R.mipmap.s_0_1);
         mBuilder.setContentTitle("zllll");
         Notification notification = mBuilder.build();
-        startForeground(MessageId, notification);
+        startForeground(MessageId, new Notification());
+        bindService(new Intent(this, GuardService.class), mServiceConnection, Context.BIND_IMPORTANT);
         return START_STICKY;
     }
 
-    private class MessageServiceConnection implements ServiceConnection {
-
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-
+            Toast.makeText(AwakenService.this, "建立链接...", Toast.LENGTH_SHORT).show();
+            Log.e(TAG,TAG+"建立链接...");
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+            startService(new Intent(AwakenService.this, GuardService.class));
+            bindService(new Intent(AwakenService.this, GuardService.class), mServiceConnection, Context.BIND_IMPORTANT);
 
         }
-    }
+    };
 }

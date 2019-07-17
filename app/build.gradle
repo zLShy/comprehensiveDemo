@@ -84,4 +84,5 @@ dependencies {
     implementation project(':IMLib')
     implementation project(':RCSticker')
     implementation project(':RedPacket')
+    implementation files('libs/Android_Map3D_SDK_V6.5.0_20180930.jar')
 }

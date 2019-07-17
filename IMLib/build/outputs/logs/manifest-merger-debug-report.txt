@@ -48,9 +48,9 @@ ADDED from /Users/zhangli/Desktop/CustomViewDemo/ZLRead/IMLib/AndroidManifest.xm
 application
 ADDED from /Users/zhangli/Desktop/CustomViewDemo/ZLRead/IMLib/AndroidManifest.xml:15:5-64:19
 meta-data#RONG_CLOUD_APP_KEY
-ADDED from /Users/zhangli/Desktop/CustomViewDemo/ZLRead/IMLib/AndroidManifest.xml:18:9-20:43
+ADDED from /Users/zhangli/Desktop/CustomViewDemo/ZLRead/IMLib/AndroidManifest.xml:18:9-20:45
 	android:value
-		ADDED from /Users/zhangli/Desktop/CustomViewDemo/ZLRead/IMLib/AndroidManifest.xml:20:13-40
+		ADDED from /Users/zhangli/Desktop/CustomViewDemo/ZLRead/IMLib/AndroidManifest.xml:20:13-42
 	android:name
 		ADDED from /Users/zhangli/Desktop/CustomViewDemo/ZLRead/IMLib/AndroidManifest.xml:19:13-46
 service#io.rong.imlib.ipc.RongService

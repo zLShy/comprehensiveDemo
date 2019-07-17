@@ -13,7 +13,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-
+    // JobService权限
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -54,7 +55,47 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
-        <service android:name=".service.AwakenService"></service>
+        <service android:name=".service.AwakenService" />
+
+        <!-- 高德地图key 配置 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="623085cfaad107f7ce431973147fa566" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.shy.zlread.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path" />
+        </provider>
+
+        <activity
+            android:name=".ImActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.shy.zlread"
+                    android:pathPrefix="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".service.GuardService"
+            android:process=":GuardService"></service>
+
+        <service
+            android:name=".service.JobWaekUpService"
+            android:enabled="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

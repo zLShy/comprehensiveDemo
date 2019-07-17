@@ -5,6 +5,8 @@ import com.shy.zlread.httpRequest.CallBacks
 import com.shy.zlread.model.ILoginDao
 import com.shy.zlread.model.LoginImp
 import com.shy.zlread.view.ILoginView
+import okhttp3.ResponseBody
+import retrofit2.Response
 
 /**
  * Created by zhangli on 2019/3/20.
@@ -20,8 +22,7 @@ class LoginPresenterImp(iLoginView:ILoginView) : ILoginPresenter {
 
         mILoginView!!.showLoading()
         mILoginDao!!.checkUser(mILoginView!!.getCount(),mILoginView!!.getPass(),object : CallBacks{
-
-            override fun onSuccess(any: Any) {
+            override fun onSuccess(any: Response<ResponseBody>) {
                 mILoginView!!.hideLoading()
                 mILoginView!!.loginSuccess()
             }

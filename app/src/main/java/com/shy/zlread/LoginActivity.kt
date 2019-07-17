@@ -110,7 +110,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
 
             if (msg.what == 1) {
                 if (mContext != null && !this@LoginActivity.isDestroyed) {
-                    Glide.with(mContext).load("").asBitmap().into(ImageView(this@LoginActivity))
+                    Glide.with(mContext).load("").into(ImageView(this@LoginActivity))
                 }
             }
         }

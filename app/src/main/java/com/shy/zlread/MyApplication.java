@@ -12,13 +12,15 @@ import android.util.Log;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.shy.framelibrary.skin.SkinManager;
+import com.shy.zlread.utils.CrashHandler;
 import com.shy.zlread.utils.Tool;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.mmkv.MMKV;
-import com.yuntongxun.ecsdk.ECDevice;
 import com.zl.greendao.gen.DaoMaster;
 import com.zl.greendao.gen.DaoSession;
+
+import io.rong.imkit.RongIM;
 
 
 /**
@@ -53,7 +55,10 @@ public class MyApplication extends Application {
 
         SkinManager.getInstance().init(this);
 
-        Thread.setDefaultUncaughtExceptionHandler(handler);
+//        初始化融云
+        RongIM.init(this);
+        //初始化异常处理
+        CrashHandler.getInstance().init(this);
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
 //
 //            return;
@@ -82,27 +87,6 @@ public class MyApplication extends Application {
     public static MyApplication getInatance() {
 
         return mInatance;
-    }
-
-    private Thread.UncaughtExceptionHandler handler = new Thread.UncaughtExceptionHandler() {
-        @Override
-        public void uncaughtException(Thread t, Throwable e) {
-            restartApp(); //发生崩溃异常时,重启应用
-        }
-    };
-
-    private void restartApp() {
-        Intent intent = new Intent(this, MainActivity.class);
-        @SuppressLint("WrongConstant")
-        PendingIntent restartIntent = PendingIntent.getActivity(
-                getApplicationContext(), 0, intent, Intent.FLAG_ACTIVITY_NEW_TASK);
-        //退出程序
-        AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000,
-                restartIntent); // 1秒钟后重启应用
-
-        //结束进程之前可以把你程序的注销或者退出代码放在这段代码之前
-        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     private void initGreenDao() {
