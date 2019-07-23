@@ -3,32 +3,12 @@ package com.zl.map.Utils
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
-import com.google.gson.Gson
 import com.shy.framelibrary.skin.SkinActivity
-import com.shy.zlread.MyApplication
-import com.shy.zlread.bean.RongToken
-import com.shy.zlread.httpRequest.ApiMethods
-import com.shy.zlread.httpRequest.CallBacks
-import com.shy.zlread.httpRequest.ProgressObserver
-import com.shy.zlread.httpRequest.RetrifitUtils
-import com.shy.zlread.utils.RongCloudeUtils
-import io.rong.imkit.utilities.RongUtils
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.Response
-import java.io.File
-import java.io.IOException
-import java.net.URL
-import java.net.URLEncoder
+
 
 /**
  * Created by zhangli on 2018/7/27.
@@ -161,21 +141,21 @@ open abstract class BaseActicity : SkinActivity() {
         }
     }
 
-    fun fixBug() {
-        var mPath = File(Environment.getExternalStorageDirectory(), "fix.aptach")
-
-        if (mPath.exists()) {
-            try {
-                MyApplication.mPatchManager.addPatch(mPath.absolutePath)
-                Toast.makeText(this, "fix success", Toast.LENGTH_SHORT).show()
-
-            } catch (e: Exception) {
-                Toast.makeText(this, "fix fails", Toast.LENGTH_SHORT).show()
-            }
-
-        } else {
-        }
-    }
+//    fun fixBug() {
+//        var mPath = File(Environment.getExternalStorageDirectory(), "fix.aptach")
+//
+//        if (mPath.exists()) {
+//            try {
+//                MyApplication.mPatchManager.addPatch(mPath.absolutePath)
+//                Toast.makeText(this, "fix success", Toast.LENGTH_SHORT).show()
+//
+//            } catch (e: Exception) {
+//                Toast.makeText(this, "fix fails", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        } else {
+//        }
+//    }
 
     //初始化数据
     open abstract fun initDate()

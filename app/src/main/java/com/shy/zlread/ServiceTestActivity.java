@@ -33,9 +33,12 @@ import com.zl.map.Utils.BaseActicity;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import banner.BannerAdapter;
+import banner.BannerView;
 import banner.BannerViewPager;
 import cz.msebera.android.httpclient.Header;
 import io.rong.imkit.RongIM;
@@ -47,7 +50,8 @@ public class ServiceTestActivity extends BaseActicity {
 
     private Handler mHandler;
     private static final String TAG = ServiceTestActivity.class.getSimpleName();
-    private BannerViewPager mVp;
+    private BannerView mBannerView;
+    List<String> mImageList = new ArrayList<>();
 
     private Handler mainHandler = new Handler() {
         @Override
@@ -73,17 +77,35 @@ public class ServiceTestActivity extends BaseActicity {
     @Override
     public void initViews() {
 
-        mVp = (BannerViewPager) findViewById(R.id.banner_vp);
+        mBannerView = (BannerView) findViewById(R.id.banner_view);
+        mImageList.add("http://cdn.cegzm.com/device/a.jpg");
+        mImageList.add("http://cdn.cegzm.com/device/b.jpg");
 
-        mVp.setAdapter(new BannerAdapter() {
+        mBannerView.setAdapter(new BannerAdapter() {
             @Override
             public View getView(int position) {
                 ImageView bannerview = new ImageView(ServiceTestActivity.this);
-                Glide.with(ServiceTestActivity.this).load("http://cdn.cegzm.com/device/a.jpg").into(bannerview);
+                Glide.with(ServiceTestActivity.this).load(mImageList.get(position)).into(bannerview);
                 return bannerview;
             }
+
+            @Override
+            public int getCount() {
+                return mImageList.size();
+            }
+
+            @Override
+            public String getBannerDesc(int position) {
+                String desc = "";
+                if (position == 0) {
+                    desc = "123";
+                } else {
+                    desc = "234";
+                }
+                return desc;
+            }
         });
-        mVp.startRoll();
+        mBannerView.startRoll();
     }
 
     @Override

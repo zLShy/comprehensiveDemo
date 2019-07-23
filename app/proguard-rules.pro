@@ -21,3 +21,17 @@
 #-renamesourcefileattribute SourceFile
 #-libraryjars libs/Yuntx_IMLib_vx.x.x.jar(如果是Android Studio 此行忽略)
 -keep class com.yuntongxun.ecsdk.** {*; }
+
+-keep class android.support.multidex.**{*;}
+-printmapping mapping.txt
+#生成的mapping.txt在app/build/outputs/mapping/release路径下，移动到/app路径下
+#修复后的项目使用，保证混淆结果一致
+#-applymapping mapping.txt
+#hotfix
+-keep class com.taobao.sophix.**{*;}
+-keep class com.ta.utdid2.device.**{*;}
+-dontwarn com.alibaba.sdk.android.utils.**
+
+-keepclassmembers class com.shy.zlread.MyApplication {
+    public <init>();
+}
